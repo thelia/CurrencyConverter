@@ -12,8 +12,6 @@
 
 namespace Thelia\CurrencyConverter\Provider;
 
-use Thelia\Math\Number;
-
 /**
  * Class BaseProvider
  * @package Thelia\CurrencyConverter\Provider

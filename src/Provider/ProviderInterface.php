@@ -12,7 +12,6 @@
 
 namespace Thelia\CurrencyConverter\Provider;
 
-
 use Thelia\Math\Number;
 
 /**
@@ -22,12 +21,12 @@ use Thelia\Math\Number;
  */
 interface ProviderInterface
 {
-
     /**
      *
      * The origin currency
      *
      * @param string $value ISO Code 4217 (example : USD, EUR). See http://fr.wikipedia.org/wiki/ISO_4217
+     * @return self
      */
     public function from($value);
 
@@ -36,6 +35,7 @@ interface ProviderInterface
      * the currency desired
      *
      * @param string $value ISO Code 4217 (example : USD, EUR). See http://fr.wikipedia.org/wiki/ISO_4217
+     * @return self
      */
     public function to($value);
 

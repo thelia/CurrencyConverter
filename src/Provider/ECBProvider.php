@@ -28,7 +28,6 @@ use Thelia\Math\Number;
  */
 class ECBProvider extends BaseProvider implements ProviderInterface
 {
-
     protected $endPoint = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
 
     protected $data;

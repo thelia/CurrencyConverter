@@ -12,7 +12,6 @@
 
 namespace Thelia\CurrencyConverter\Tests\Provider;
 
-
 use Thelia\CurrencyConverter\Provider\ECBProvider;
 use Thelia\Math\Number;
 

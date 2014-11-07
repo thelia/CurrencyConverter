@@ -22,7 +22,6 @@ use Thelia\Math\Number;
  */
 class CurrencyConverter
 {
-
     /**
      * @var ProviderInterface
      */

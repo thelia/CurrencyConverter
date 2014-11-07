@@ -19,6 +19,9 @@ class CurrencyNotFoundException extends \RuntimeException
 {
     protected $currency;
 
+    /**
+     * @param string $currency
+     */
     public function __construct($currency, $message = null, $code = 0, \Exception $previous = null)
     {
         $this->currency = $currency;
