@@ -12,6 +12,7 @@
 
 namespace Thelia\CurrencyConverter\Tests\Provider;
 
+use Thelia\CurrencyConverter\Exception\CurrencyNotFoundException;
 use Thelia\CurrencyConverter\Provider\ECBProvider;
 use Thelia\Math\Number;
 
@@ -49,6 +50,7 @@ XML;
 
     /**
      * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convert
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::retrieveRateFactor
      */
     public function testFromEuro()
     {
@@ -68,6 +70,8 @@ XML;
 
     /**
      * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convert
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::retrieveRateFactor
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convertToOther
      */
     public function testFromUsd()
     {
@@ -87,6 +91,8 @@ XML;
 
     /**
      * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convert
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::retrieveRateFactor
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convertToOther
      */
     public function testFromGbp()
     {
@@ -106,6 +112,7 @@ XML;
 
     /**
      * @expectedException \Thelia\CurrencyConverter\Exception\CurrencyNotFoundException
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::retrieveRateFactor
      */
     public function testResolveWithUnknownCurrencies()
     {
@@ -113,5 +120,73 @@ XML;
         $number = new Number(1);
 
         $rate = $provider->from('FOO')->to('BAR')->convert($number);
+    }
+
+    /**
+     * @expectedException \Thelia\CurrencyConverter\Exception\CurrencyNotFoundException
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::retrieveRateFactor
+     */
+    public function testConvertWithUnknowFrom()
+    {
+        $provider = $this->provider;
+        $number = new Number(1);
+
+        $rate = $provider->from('FOO')->to('USD')->convert($number);
+    }
+
+    /**
+     * @expectedException \Thelia\CurrencyConverter\Exception\CurrencyNotFoundException
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::retrieveRateFactor
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convertToOther
+     */
+    public function testConvertWithUnknownTo()
+    {
+        $provider = $this->provider;
+        $number = new Number(1);
+
+        $rate = $provider->from('EUR')->to('FOO')->convert($number);
+    }
+
+    /**
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::loadFromWebservice
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::getData
+     */
+    public function testLoadFromWerbservice()
+    {
+        $provider = new ECBProvider();
+        $provider->loadFromWebService();
+
+        $data = $provider->getData();
+
+        $this->assertInstanceOf('\SimpleXmlElement', $data);
+    }
+
+    /**
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::loadFromXml
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::getData
+     */
+    public function testLoadFromXml()
+    {
+        $provider = new ECBProvider();
+        $provider->loadFromXml($this->data);
+
+        $data = $provider->getData();
+
+        $this->assertInstanceOf('\SimpleXmlElement', $data);
+    }
+
+    public function testConvertWithException()
+    {
+        try {
+            $provider = $this->provider;
+            $number = new Number(1);
+
+            $rate = $provider->from('FOO')->to('USD')->convert($number);
+        } catch (CurrencyNotFoundException $e) {
+            $this->assertEquals('FOO', $e->getCurrency());
+            return;
+        }
+
+        $this->fail('try converting with unknown currencies must fail');
     }
 }

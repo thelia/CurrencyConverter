@@ -28,4 +28,12 @@ class CurrencyNotFoundException extends \RuntimeException
 
         parent::__construct($message, $code, $previous);
     }
+
+    /**
+     * @return string return the currency unknown
+     */
+    public function getCurrency()
+    {
+        return $this->currency;
+    }
 }

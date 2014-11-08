@@ -19,7 +19,9 @@ class CurrencyConverterTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::__construct
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::to
      * @expectedException \RuntimeException
      */
     public function testConvertWithoutFrom()
@@ -32,6 +34,7 @@ class CurrencyConverterTest extends \PHPUnit_Framework_TestCase
     /**
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::from
      * @expectedException \RuntimeException
      */
     public function testConvertWithoutTo()
@@ -66,6 +69,7 @@ class CurrencyConverterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
      * @expectedException \Thelia\CurrencyConverter\Exception\MissingProviderException
      */
     public function testConvertWithoutProvider()
@@ -96,6 +100,7 @@ class CurrencyConverterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::__construct
      */
     public function testConvertWithSetterProvider()
     {
@@ -111,6 +116,8 @@ class CurrencyConverterTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::setProvider
      */
     public function testConvert()
     {

@@ -57,6 +57,11 @@ class ECBProvider extends BaseProvider implements ProviderInterface
         $this->data = $xml->Cube[0]->Cube[0];
     }
 
+    public function getData()
+    {
+        return $this->data;
+    }
+
     public function convert(Number $number)
     {
         $rateFactor = $this->retrieveRateFactor();
