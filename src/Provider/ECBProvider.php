@@ -57,14 +57,14 @@ class ECBProvider extends BaseProvider implements ProviderInterface
         $this->data = $xml->Cube[0]->Cube[0];
     }
 
-    public function resolve(Number $number)
+    public function convert(Number $number)
     {
         $rateFactor = $this->retrieveRateFactor();
 
         if ($this->to === 'EUR') {
             return $number->multiply($rateFactor);
         } else {
-            return $this->resolveToOther($rateFactor, $number);
+            return $this->convertToOther($rateFactor, $number);
         }
     }
 
@@ -74,7 +74,7 @@ class ECBProvider extends BaseProvider implements ProviderInterface
      * @return \Thelia\Math\Number
      * @throws \Thelia\CurrencyConverter\Exception\CurrencyNotFoundException if the `to` currency is not support
      */
-    private function resolveToOther(Number $rateFactor, Number $number)
+    private function convertToOther(Number $rateFactor, Number $number)
     {
         $conversion = false;
         foreach ($this->data->Cube as $last) {

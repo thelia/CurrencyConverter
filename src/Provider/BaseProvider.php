@@ -28,7 +28,7 @@ abstract class BaseProvider implements ProviderInterface
      * The origin currency
      *
      * @param string $value ISO Code 4217 (example : USD, EUR). See http://fr.wikipedia.org/wiki/ISO_4217
-     * @return $this
+     * @return self
      */
     public function from($value)
     {
@@ -42,7 +42,7 @@ abstract class BaseProvider implements ProviderInterface
      * the currency desired
      *
      * @param string $value ISO Code 4217 (example : USD, EUR). See http://fr.wikipedia.org/wiki/ISO_4217
-     * @return $this
+     * @return self
      */
     public function to($value)
     {

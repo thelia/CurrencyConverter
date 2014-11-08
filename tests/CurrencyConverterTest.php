@@ -18,74 +18,118 @@ use Thelia\Math\Number;
 class CurrencyConverterTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @covers \Thelia\CurrencyConverter\CurrencyConverter::resolve
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
      * @expectedException \RuntimeException
      */
-    public function testResolveWithoutFrom()
+    public function testConvertWithoutFrom()
     {
         $currencyConverter = new CurrencyConverter($this->getProvider());
         $currencyConverter->to('EUR');
-        $currencyConverter->resolve(new Number(1));
+        $currencyConverter->convert(new Number(1));
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\CurrencyConverter::resolve
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
      * @expectedException \RuntimeException
      */
-    public function testResolveWithoutTo()
+    public function testConvertWithoutTo()
     {
         $currencyConverter = new CurrencyConverter($this->getProvider());
         $currencyConverter->from('EUR');
-        $currencyConverter->resolve(new Number(1));
+        $currencyConverter->convert(new Number(1));
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\CurrencyConverter::resolve
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::validate
      * @expectedException \RuntimeException
      */
-    public function testResolveWithoutToAndFrom()
+    public function testConvertWithoutToAndFrom()
     {
         $currencyConverter = new CurrencyConverter($this->getProvider());
-        $currencyConverter->resolve(new Number(1));
+        $currencyConverter->convert(new Number(1));
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\CurrencyConverter::resolve
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
      * @expectedException \LogicException
      */
-    public function testResolveWithBadProvider()
+    public function testConvertWithBadProvider()
     {
         $currencyConverter = new CurrencyConverter($this->getMock('\Thelia\CurrencyConverter\Provider\ProviderInterface'));
         $currencyConverter->from('EUR');
         $currencyConverter->to('USD');
-        $currencyConverter->resolve(new Number(1));
+        $currencyConverter->convert(new Number(1));
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\CurrencyConverter::resolve
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     * @expectedException \Thelia\CurrencyConverter\Exception\MissingProviderException
+     */
+    public function testConvertWithoutProvider()
+    {
+        $currencyConverter = new CurrencyConverter();
+        $currencyConverter
+            ->from('USD')
+            ->to('EUR')
+            ->convert(new Number('1'));
+    }
+
+    /**
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
      * @covers \Thelia\CurrencyConverter\CurrencyConverter::reset
      * @expectedException \RuntimeException
      */
-    public function testResolveTwice()
+    public function testConvertTwice()
     {
         $number = new Number(1);
 
         $currencyConverter = new CurrencyConverter($this->getProvider());
         $currencyConverter->from('EUR');
         $currencyConverter->to('USD');
-        $currencyConverter->resolve($number);
+        $currencyConverter->convert($number);
 
-        $currencyConverter->resolve($number);
+        $currencyConverter->convert($number);
+    }
+
+    /**
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     */
+    public function testConvertWithSetterProvider()
+    {
+        $currencyConverter = new CurrencyConverter($this->getProvider());
+
+        $result = $currencyConverter
+            ->from('EUR')
+            ->to('USD')
+            ->convert(new Number('1'));
+
+        $this->assertInstanceOf('Thelia\Math\Number', $result, 'the converter must return an instance of \Thelia\Math\Number');
+    }
+
+    /**
+     * @covers \Thelia\CurrencyConverter\CurrencyConverter::convert
+     */
+    public function testConvert()
+    {
+        $currencyConverter = new CurrencyConverter();
+
+        $result = $currencyConverter
+            ->setProvider($this->getProvider())
+            ->from('EUR')
+            ->to('USD')
+            ->convert(new Number('1'));
+
+        $this->assertInstanceOf('Thelia\Math\Number', $result, 'the converter must return an instance of \Thelia\Math\Number');
     }
 
     public function getProvider()
     {
         $provider = $this->getMock('\Thelia\CurrencyConverter\Provider\ProviderInterface');
 
-        $provider->method('resolve')
+        $provider->method('convert')
             ->willReturn(new Number(1));
 
         return $provider;

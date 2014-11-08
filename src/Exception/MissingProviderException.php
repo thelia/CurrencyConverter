@@ -10,40 +10,18 @@
 /*      file that was distributed with this source code.                             */
 /*************************************************************************************/
 
-namespace Thelia\CurrencyConverter\Provider;
+namespace Thelia\CurrencyConverter\Exception;
 
-use Thelia\Math\Number;
 
 /**
- * Interface ProviderInterface
- * @package Thelia\CurrencyConverter\Provider
+ *
+ * exception thrown if the provider is missing
+ *
+ * Class MissingProviderException
+ * @package Thelia\CurrencyConverter\Exception
  * @author Manuel Raynaud <manu@thelia.net>
  */
-interface ProviderInterface
+class MissingProviderException extends \RuntimeException
 {
-    /**
-     *
-     * The origin currency
-     *
-     * @param string $value ISO Code 4217 (example : USD, EUR). See http://fr.wikipedia.org/wiki/ISO_4217
-     * @return self
-     */
-    public function from($value);
 
-    /**
-     *
-     * the currency desired
-     *
-     * @param string $value ISO Code 4217 (example : USD, EUR). See http://fr.wikipedia.org/wiki/ISO_4217
-     * @return self
-     */
-    public function to($value);
-
-    /**
-     * return the conversion
-     *
-     * @param \Thelia\Math\Number $number
-     * @return mixed
-     */
-    public function convert(Number $number);
 }

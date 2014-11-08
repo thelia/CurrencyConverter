@@ -48,57 +48,57 @@ XML;
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::resolve
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convert
      */
     public function testFromEuro()
     {
         $provider = $this->provider;
         $number = new Number(1);
 
-        $usdRate = $provider->from('EUR')->to('USD')->resolve($number);
+        $usdRate = $provider->from('EUR')->to('USD')->convert($number);
 
         $this->assertInstanceOf('Thelia\Math\Number', $usdRate, "the provider must return an instance of Number");
         $this->assertEquals('1.2393', $usdRate->getNumber(-1), "the expected result from EUR to USD is 1.2393");
 
-        $gbpRate = $provider->from('EUR')->to('GBP')->resolve($number);
+        $gbpRate = $provider->from('EUR')->to('GBP')->convert($number);
 
         $this->assertInstanceOf('Thelia\Math\Number', $gbpRate, "the provider must return an instance of Number");
         $this->assertEquals('0.78340', $gbpRate->getNumber(-1), "the expected result from EUR to GBP is 0.78340");
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::resolve
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convert
      */
     public function testFromUsd()
     {
         $provider = $this->provider;
         $number = new Number(1);
 
-        $euroRate = $provider->from('USD')->to('EUR')->resolve($number);
+        $euroRate = $provider->from('USD')->to('EUR')->convert($number);
 
         $this->assertInstanceOf('Thelia\Math\Number', $euroRate, "the provider must return an instance of Number");
         $this->assertEquals('0.80690712498991', $euroRate->getNumber(-1), "the expected result from USD to EUR is 0.80690712498991");
 
-        $gbpRate = $provider->from('USD')->to('GBP')->resolve($number);
+        $gbpRate = $provider->from('USD')->to('GBP')->convert($number);
 
         $this->assertInstanceOf('Thelia\Math\Number', $gbpRate, "the provider must return an instance of Number");
         $this->assertEquals('0.6321310417171', $gbpRate->getNumber(-1), "the expected result from USD to GBP is 0.6321310417171");
     }
 
     /**
-     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::resolve
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::convert
      */
     public function testFromGbp()
     {
         $provider = $this->provider;
         $number = new Number(1);
 
-        $euroRate = $provider->from('GBP')->to('EUR')->resolve($number);
+        $euroRate = $provider->from('GBP')->to('EUR')->convert($number);
 
         $this->assertInstanceOf('Thelia\Math\Number', $euroRate, "the provider must return an instance of Number");
         $this->assertEquals('1.2764871074802', $euroRate->getNumber(-1), "the expected result from GBP to EUR is 1.2764871074802");
 
-        $usdRate = $provider->from('GBP')->to('USD')->resolve($number);
+        $usdRate = $provider->from('GBP')->to('USD')->convert($number);
 
         $this->assertInstanceOf('Thelia\Math\Number', $usdRate, "the provider must return an instance of Number");
         $this->assertEquals('1.5819504723002', $usdRate->getNumber(-1), "the expected result from GBP to USD is 1.5819504723002");
@@ -112,6 +112,6 @@ XML;
         $provider = $this->provider;
         $number = new Number(1);
 
-        $rate = $provider->from('FOO')->to('BAR')->resolve($number);
+        $rate = $provider->from('FOO')->to('BAR')->convert($number);
     }
 }
