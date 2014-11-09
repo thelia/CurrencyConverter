@@ -32,8 +32,15 @@ class ECBProvider extends BaseProvider implements ProviderInterface
 
     protected $data;
 
+    public function __construct($loadWebService = true)
+    {
+        if (true === $loadWebService) {
+            $this->loadFromWebService();
+        }
+    }
 
-    public function loadFromWebService($endPoint = null)
+
+    private function loadFromWebService($endPoint = null)
     {
         if (null !== $endPoint) {
             $this->endPoint = $endPoint;

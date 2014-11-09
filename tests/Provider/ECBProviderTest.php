@@ -43,7 +43,7 @@ XML;
 
     public function setUp()
     {
-        $this->provider = new ECBProvider();
+        $this->provider = new ECBProvider(false);
 
         $this->provider->loadFromXml($this->data);
     }
@@ -150,11 +150,11 @@ XML;
     /**
      * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::loadFromWebservice
      * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::getData
+     * @covers \Thelia\CurrencyConverter\Provider\ECBProvider::__construct
      */
     public function testLoadFromWerbservice()
     {
         $provider = new ECBProvider();
-        $provider->loadFromWebService();
 
         $data = $provider->getData();
 
@@ -167,7 +167,7 @@ XML;
      */
     public function testLoadFromXml()
     {
-        $provider = new ECBProvider();
+        $provider = new ECBProvider(false);
         $provider->loadFromXml($this->data);
 
         $data = $provider->getData();
