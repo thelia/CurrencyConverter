@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1baa07dc89fd7d09e9fa03e7884d0eca",
+    "hash": "94f5787ba4d31a54cbe7f90f27913aa1",
     "packages": [
         {
             "name": "thelia/math-tools",
