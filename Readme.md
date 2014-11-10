@@ -14,7 +14,7 @@ Create a composer.json file in your project with this content :
 ```
 {
     "require": {
-        "thelia/currency-converter": "dev-master"
+        "thelia/currency-converter": "~1.0"
     } 
 
 }
