@@ -1,23 +1,24 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
     "hash": "94f5787ba4d31a54cbe7f90f27913aa1",
+    "content-hash": "15b6750be8c220747c147b51b8603bf0",
     "packages": [
         {
             "name": "thelia/math-tools",
-            "version": "1.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thelia/math-tools.git",
-                "reference": "151c819df2b428fffde19314e8a02bef02dbad31"
+                "reference": "4e66cd5448531a6eaf565acd8b69d9c693da7a3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thelia/math-tools/zipball/151c819df2b428fffde19314e8a02bef02dbad31",
-                "reference": "151c819df2b428fffde19314e8a02bef02dbad31",
+                "url": "https://api.github.com/repos/thelia/math-tools/zipball/4e66cd5448531a6eaf565acd8b69d9c693da7a3a",
+                "reference": "4e66cd5448531a6eaf565acd8b69d9c693da7a3a",
                 "shasum": ""
             },
             "require-dev": {
@@ -45,7 +46,7 @@
                 }
             ],
             "description": "Number management library",
-            "time": "2014-11-07 14:57:24"
+            "time": "2015-11-05 15:52:55"
         }
     ],
     "packages-dev": [
@@ -797,6 +798,7 @@
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.4.0"
     },

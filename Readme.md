@@ -3,6 +3,9 @@
 **Currency Converter** is a Library which helps you to convert a number from a currency to an another one.
 The converter uses *provider* for converting the number. Each provider embed the logic for converting this number.
 
+[![Build Status](https://travis-ci.org/thelia/CurrencyConverter.png?branch=master)](https://travis-ci.org/thelia/CurrencyConverter) [![License](https://poser.pugx.org/thelia/currency-converter/license.png)](https://packagist.org/packages/thelia/currency-converter) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/thelia/CurrencyConverter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/thelia/CurrencyConverter/?branch=master)
+
+
 ## Installation
 
 **Currency Converter** is still in development and doesn't have stable version for now.
