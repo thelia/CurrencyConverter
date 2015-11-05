@@ -128,6 +128,10 @@ echo "\nrate=".print_r($rate,1);
                     $rate = new Number((string) $last['rate']);
                     $base = new Number(1);
                     $rateFactor = $base->divide($rate);
+echo "\nretrieveRateFactor() :  last['rate'] = ". $last['rate'];
+echo "\nretrieveRateFactor() :  rate number = ". print_r($rate,1);
+echo "\nretrieveRateFactor() :  base = ". print_r($base,1);
+echo "\nretrieveRateFactor() :  rateFactor = ". print_r($rateFactor,1);
                 }
             }
         }
