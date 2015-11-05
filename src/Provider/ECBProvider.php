@@ -94,7 +94,7 @@ class ECBProvider extends BaseProvider implements ProviderInterface
 
             if ($code === $this->to) {
                 $rate = $rateFactor->multiply((string) $last['rate']);
-echo "rate=".print_r($rate,1);
+echo "X rate=".print_r($rate,1);
                 $conversion = $number->multiply($rate);
             }
         }
