@@ -96,8 +96,13 @@ echo "\nconvertToOther : rateFactor=".print_r($rateFactor,1);
 
             if ($code === $this->to) {
 echo "\nconvertToOther : last['rate']=".$last['rate'];
+$lastAsNumber=new Number((string) $last['rate']);
+echo "\nconvertToOther : last as number=".print_r($lastAsNumber,1);
                 $rate = $rateFactor->multiply((string) $last['rate']);
+                $rate2 = $rateFactor->multiply($lastAsNumber);
 echo "\nconvertToOther : rate=".print_r($rate,1);
+echo "\nconvertToOther : rate2=".print_r($rate2,1);
+
                 $conversion = $number->multiply($rate);
             }
         }
