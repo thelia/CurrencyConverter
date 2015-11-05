@@ -88,12 +88,21 @@ class ECBProvider extends BaseProvider implements ProviderInterface
      */
     private function convertToOther(Number $rateFactor, Number $number)
     {
+echo "\nconvertToOther : number=".print_r($number,1);
+echo "\nconvertToOther : rateFactor=".print_r($rateFactor,1);
         $conversion = false;
         foreach ($this->data->Cube as $last) {
             $code = strtoupper($last["currency"]);
 
             if ($code === $this->to) {
+echo "\nconvertToOther : last['rate']=".$last['rate'];
+$lastAsNumber=new Number((string) $last['rate']);
+echo "\nconvertToOther : last as number=".print_r($lastAsNumber,1);
                 $rate = $rateFactor->multiply((string) $last['rate']);
+                $rate2 = $rateFactor->multiply($lastAsNumber);
+echo "\nconvertToOther : rate=".print_r($rate,1);
+echo "\nconvertToOther : rate2=".print_r($rate2,1);
+
                 $conversion = $number->multiply($rate);
             }
         }
@@ -125,6 +134,10 @@ class ECBProvider extends BaseProvider implements ProviderInterface
                     $rate = new Number((string) $last['rate']);
                     $base = new Number(1);
                     $rateFactor = $base->divide($rate);
+echo "\nretrieveRateFactor() :  last['rate'] = ". $last['rate'];
+echo "\nretrieveRateFactor() :  rate number = ". print_r($rate,1);
+echo "\nretrieveRateFactor() :  base = ". print_r($base,1);
+echo "\nretrieveRateFactor() :  rateFactor = ". print_r($rateFactor,1);
                 }
             }
         }
