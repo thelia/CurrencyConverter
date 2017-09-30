@@ -64,4 +64,5 @@ List of available providers :
 | Provider | Description |
 |---------:|-------------|
 | [European Central Bank](http://www.ecb.europa.eu/stats/exchange/eurofxref/html/index.en.html) | All currencies quoted against the euro (base currency) |
+| [My Currency](http://www.mycurrency.net) | Almost all currencies. |
 
