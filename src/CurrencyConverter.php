@@ -41,7 +41,7 @@ class CurrencyConverter
     /**
      * @param ProviderInterface $provider optional parameter
      */
-    public function __construct(ProviderInterface $provider = null)
+    public function __construct(?ProviderInterface $provider = null)
     {
         $this->provider = $provider;
     }
