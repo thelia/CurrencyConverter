@@ -22,11 +22,11 @@ class CurrencyNotFoundException extends \RuntimeException
     /**
      * @param string $currency
      */
-    public function __construct($currency, $message = null, $code = 0, \Exception $previous = null)
+    public function __construct($currency, $message = null, $code = 0, ?\Exception $previous = null)
     {
         $this->currency = $currency;
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct((string) $message, $code, $previous);
     }
 
     /**
