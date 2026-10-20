@@ -26,7 +26,7 @@ class CurrencyNotFoundException extends \RuntimeException
     {
         $this->currency = $currency;
 
-        parent::__construct($message, $code, $previous);
+        parent::__construct((string) $message, $code, $previous);
     }
 
     /**
